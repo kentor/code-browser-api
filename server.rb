@@ -2,6 +2,13 @@ require './api'
 require 'json'
 require 'sinatra'
 require 'sinatra/json'
+require 'byebug' rescue LoadError
+
+before do
+  content_type :json
+  headers 'Access-Control-Allow-Origin' => '*',
+          'Access-Control-Allow-Methods' => ['OPTIONS', 'GET']
+end
 
 get '/' do
   'OK'
@@ -12,8 +19,6 @@ get '/api/?' do
 end
 
 get '/api/blob/:branch/*' do
-  headers 'Access-Control-Allow-Origin' => '*'
-
   path = params[:splat].first
   branch = params[:branch]
 
@@ -21,10 +26,12 @@ get '/api/blob/:branch/*' do
 end
 
 get '/api/tree/:branch/?*' do
-  headers 'Access-Control-Allow-Origin' => '*'
-
   path = params[:splat].first
   branch = params[:branch]
 
   json Api::TreePresenter.new(path, branch).as_json
+end
+
+options '/*' do
+  200
 end
