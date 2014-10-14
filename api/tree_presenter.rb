@@ -22,7 +22,7 @@ module Api
       # TODO: handle tree is not a tree
 
       json = {
-        name: path.last || '/',
+        name: path.last || @branch,
         oid: tree.oid,
         type: 'tree',
         href: "#{API_PATH}/tree/#{@branch}/#{@path}".squeeze('/'),
