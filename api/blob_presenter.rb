@@ -22,8 +22,10 @@ module Api
       # TODO: handle blob is not a blob
 
       {
-        href: "#{API_PATH}/blob/#{@branch}/#{@path}",
+        name: path.last,
+        oid: blob.oid,
         type: 'blob',
+        href: "#{API_PATH}/blob/#{@branch}/#{@path}",
         content: blob.content,
       }
     end
