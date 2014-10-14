@@ -23,6 +23,7 @@ module Api
 
       json = {
         href: "#{API_PATH}/tree/#{@branch}/#{@path}".squeeze('/'),
+        name: path.last || '/',
         type: 'tree',
         files: [],
       }
