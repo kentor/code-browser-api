@@ -26,7 +26,7 @@ module Api
         oid: blob.oid,
         type: 'blob',
         href: "#{API_PATH}/blob/#{@branch}/#{@path}",
-        content: blob.content,
+        content: blob.content.force_encoding('UTF-8'),
       }
     end
   end
